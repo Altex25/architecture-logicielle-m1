@@ -3,17 +3,22 @@ package org.example.loansservice.service.impl;
 
 import org.example.loansservice.entity.Loan;
 import org.example.loansservice.repository.LoanRepository;
+import org.example.loansservice.service.AccountService;
 import org.example.loansservice.service.LoanService;
+import org.example.loansservice.usable.AccountUsable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class LoanServiceImpl implements LoanService {
-
     @Autowired
     private LoanRepository loanRepository;
+
+    @Autowired
+    private AccountService accountService;
 
     public List<Loan> getAllLoans() {
         return loanRepository.findAll();
@@ -28,6 +33,11 @@ public class LoanServiceImpl implements LoanService {
     }
 
     public Loan saveLoan(Loan loan) {
+        AccountUsable accountUsable = null;
+        accountUsable = accountService.getAccountById(loan.getAccountId());
+        if (accountUsable == null) {
+            return null;
+        }
         return loanRepository.save(loan);
     }
 
