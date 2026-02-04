@@ -8,4 +8,5 @@ spring:
     config:
       server:
         git:
-          uri: 
+          uri: https://github.com/Altex25/micro-demo-copie.git
+          default-label: main
