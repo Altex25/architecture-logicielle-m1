@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @Service
 public class LoanServiceImpl implements LoanService {
@@ -33,16 +32,20 @@ public class LoanServiceImpl implements LoanService {
     }
 
     public Loan saveLoan(Loan loan) {
-        AccountUsable accountUsable = null;
-        accountUsable = accountService.getAccountById(loan.getAccountId());
-        if (accountUsable == null) {
-            return null;
+        if (isAccountExisting(loan.getAccountId())) {
+            return loanRepository.save(loan);
         }
-        return loanRepository.save(loan);
+        return null;
     }
 
     public void deleteLoan(Long id) {
         loanRepository.deleteById(id);
+    }
+
+    private boolean isAccountExisting(Long accountId) {
+        AccountUsable accountUsable = null;
+        accountUsable = accountService.getAccountById(accountId);
+        return accountUsable != null;
     }
 }
 

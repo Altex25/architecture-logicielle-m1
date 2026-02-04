@@ -1,11 +1,17 @@
 package org.example.cardservice.controller;
 
 
-import org.apache.http.HttpStatus;
 import org.example.cardservice.entity.Card;
 import org.example.cardservice.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -26,8 +32,15 @@ public class CardController {
     }
 
     @GetMapping("/accounts/{accountId}")
-    public List<Card> getCardsByAccountId(@PathVariable Long accountId) {
-        return cardService.getCardsByAccountId(accountId);
+    public ResponseEntity<List<Card>> getCardsByAccountId(@PathVariable Long accountId) {
+        List<Card> cards = cardService.getCardsByAccountId(accountId);
+        if (cards == null) {
+            return ResponseEntity.notFound().build();
+        }
+        if (cards.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(cards);
     }
 
     @PostMapping

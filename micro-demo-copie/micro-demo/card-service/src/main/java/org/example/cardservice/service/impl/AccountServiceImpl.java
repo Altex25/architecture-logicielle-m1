@@ -4,13 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.example.cardservice.service.AccountService;
 import org.example.cardservice.usable.AccountUsable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
-    private final RestClient restClient = RestClient.create();
     private final RestTemplate restTemplate;
 
     String BASE_URL = "http://localhost:8090";
@@ -18,9 +16,5 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountUsable getAccountById(Long id) {
         return restTemplate.getForObject(BASE_URL + "/accounts/{id}", AccountUsable.class, id);
-//        return restClient.get()
-//                .uri(BASE_URL + "/accounts/" + id)
-//                .retrieve()
-//                .body(AccountUsable.class);
     }
 }

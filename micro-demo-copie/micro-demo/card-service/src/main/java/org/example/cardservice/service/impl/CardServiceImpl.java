@@ -28,19 +28,26 @@ public class CardServiceImpl implements CardService {
     }
 
     public List<Card> getCardsByAccountId(Long accountId) {
-        return cardRepository.findByAccountId(accountId);
+        if (isAccountExisting(accountId)) {
+            return cardRepository.findByAccountId(accountId);
+        }
+        return null;
     }
 
     public Card saveCard(Card card) {
-        AccountUsable account = null;
-        account = accountService.getAccountById(card.getAccountId());
-        if (account == null) {
-            return null;
+        if (isAccountExisting(card.getAccountId())) {
+            return cardRepository.save(card);
         }
-        return cardRepository.save(card);
+        return null;
     }
 
     public void deleteCard(Long id) {
         cardRepository.deleteById(id);
+    }
+
+    private boolean isAccountExisting(Long accountId) {
+        AccountUsable accountUsable = null;
+        accountUsable = accountService.getAccountById(accountId);
+        return accountUsable != null;
     }
 }
