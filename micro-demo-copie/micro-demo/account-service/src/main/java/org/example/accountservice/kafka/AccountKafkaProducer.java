@@ -1,7 +1,8 @@
 package org.example.accountservice.kafka;
 
-import lombok.Value;
+
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,7 @@ public class AccountKafkaProducer {
                 "{\"event\":\"ACCOUNT_DELETED\",\"accountId\":\"%s\"}",
                 accountId
         );
-
-        log.info("test");
-
+        log.info("Producing account deleted event: {}", event);
         kafkaTemplate.send(topic, event);
     }
 }
