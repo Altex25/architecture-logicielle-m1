@@ -3,8 +3,15 @@ package org.example.accountservice.controller;
 
 import org.example.accountservice.entity.Account;
 import org.example.accountservice.service.AccountService;
+import org.example.accountservice.usable.AccountUsable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -22,6 +29,11 @@ public class AccountController {
     @GetMapping("/{id}")
     public Account getAccountById(@PathVariable Long id) {
         return accountService.getAccountById(id);
+    }
+
+    @GetMapping(value = "/details/{id}", produces = "application/json")
+    public AccountUsable getAccountDetailsById(@PathVariable Long id) {
+        return accountService.getAccountDetailsById(id);
     }
 
     @PostMapping
