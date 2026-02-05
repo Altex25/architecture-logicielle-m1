@@ -28,9 +28,6 @@ public class AccountServiceImpl implements AccountService {
     private AccountRepository accountRepository;
 
     @Autowired
-    private AccountService accountService;
-
-    @Autowired
     private AccountKafkaProducer accountKafkaProducer;
     private final RestTemplate restTemplate;
 
