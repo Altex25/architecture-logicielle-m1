@@ -17,7 +17,15 @@ spring:
   h2:
     console:
       enabled: true
-
+  kafka:
+    boostrap-servers: localhost:9092
+    consumer:
+      group-id: card-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    properties:
+      enable.auto.commit: true
 eureka:
   client:
     service-url:
