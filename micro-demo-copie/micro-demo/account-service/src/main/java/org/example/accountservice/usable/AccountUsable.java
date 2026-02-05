@@ -16,6 +16,8 @@ public class AccountUsable {
     private String name;
     private String email;
     private Integer Solde;
+    private Integer cardCount;
+    private Integer loanCount;
 
     private List<CardUsable> cards;
     private List<LoanUsable> loans;

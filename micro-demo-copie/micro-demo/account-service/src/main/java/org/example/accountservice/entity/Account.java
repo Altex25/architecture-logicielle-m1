@@ -17,6 +17,8 @@ public class Account {
     private String name;
     private String email;
     private Integer Solde;
+    private Integer cardCount = 0;
+    private Integer loanCount = 0;
 
     public Long getId() {
         return id;
@@ -48,5 +50,21 @@ public class Account {
 
     public void setSolde(Integer solde) {
         Solde = solde;
+    }
+
+    public Integer getCardCount() {
+        return cardCount;
+    }
+
+    public void setCardCount(Integer cardCount) {
+        this.cardCount = cardCount;
+    }
+
+    public Integer getLoanCount() {
+        return loanCount;
+    }
+
+    public void setLoanCount(Integer loanCount) {
+        this.loanCount = loanCount;
     }
 }

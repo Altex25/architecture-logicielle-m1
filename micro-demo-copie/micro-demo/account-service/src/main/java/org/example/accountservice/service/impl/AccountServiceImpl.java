@@ -14,6 +14,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -56,18 +57,50 @@ public class AccountServiceImpl implements AccountService {
                 account.getName(),
                 account.getEmail(),
                 account.getSolde(),
+                account.getCardCount(),
+                account.getLoanCount(),
                 cards,
                 loans
         );
     }
 
     public Account saveAccount(Account account) {
+        if (account.getCardCount() == null) {
+            account.setCardCount(0);
+        }
+        if (account.getLoanCount() == null) {
+            account.setLoanCount(0);
+        }
         return accountRepository.save(account);
     }
 
     public void deleteAccount(Long id) {
         accountKafkaProducer.sendAccountDelete(id);
         accountRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void updateCardCount(Long accountId, int delta) {
+        Account account = accountRepository.findById(accountId).orElse(null);
+        if (account == null) {
+            return;
+        }
+        int current = account.getCardCount() == null ? 0 : account.getCardCount();
+        int updated = Math.max(0, current + delta);
+        account.setCardCount(updated);
+        accountRepository.save(account);
+    }
+
+    @Transactional
+    public void updateLoanCount(Long accountId, int delta) {
+        Account account = accountRepository.findById(accountId).orElse(null);
+        if (account == null) {
+            return;
+        }
+        int current = account.getLoanCount() == null ? 0 : account.getLoanCount();
+        int updated = Math.max(0, current + delta);
+        account.setLoanCount(updated);
+        accountRepository.save(account);
     }
 
     public List<CardUsable> getCardsByAccountId(Long accountId) {

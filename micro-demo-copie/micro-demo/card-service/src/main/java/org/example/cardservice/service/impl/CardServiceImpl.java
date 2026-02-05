@@ -5,6 +5,7 @@ import org.example.cardservice.repository.CardRepository;
 import org.example.cardservice.service.AccountService;
 import org.example.cardservice.service.CardService;
 import org.example.cardservice.usable.AccountUsable;
+import org.example.cardservice.kafka.CardKafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,9 @@ public class CardServiceImpl implements CardService {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private CardKafkaProducer cardKafkaProducer;
 
     public List<Card> getAllCards() {
         return cardRepository.findAll();
@@ -36,13 +40,17 @@ public class CardServiceImpl implements CardService {
 
     public Card saveCard(Card card) {
         if (isAccountExisting(card.getAccountId())) {
-            return cardRepository.save(card);
+            Card saved = cardRepository.save(card);
+            cardKafkaProducer.sendCardCreated(saved.getAccountId(), saved.getId());
+            return saved;
         }
         return null;
     }
 
     public void deleteCard(Long id) {
+        Card card = cardRepository.findById(id).orElseThrow(() -> new RuntimeException("Card not found"));
         cardRepository.deleteById(id);
+        cardKafkaProducer.sendCardDeleted(card.getAccountId(), card.getId());
     }
 
     private boolean isAccountExisting(Long accountId) {

@@ -21,4 +21,8 @@ public interface AccountService {
     List<CardUsable> getCardsByAccountId(Long id);
 
     List<LoanUsable> getLoansByAccountId(Long id);
+
+    void updateCardCount(Long accountId, int delta);
+
+    void updateLoanCount(Long accountId, int delta);
 }
