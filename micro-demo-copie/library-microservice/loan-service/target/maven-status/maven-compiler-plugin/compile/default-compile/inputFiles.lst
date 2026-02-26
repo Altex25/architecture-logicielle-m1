@@ -1,0 +1,16 @@
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/LoanServiceApplication.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/client/BookClient.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/client/UserClient.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/config/RestClientConfig.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/controller/LoanController.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/dto/LoanDTO.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/exception/BusinessException.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/exception/GlobalExceptionHandler.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/exception/RemoteServiceException.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/exception/ResourceNotFoundException.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/model/Loan.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/model/LoanStatus.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/repository/LoanRepository.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/service/LoanService.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/service/LoanServiceImpl.java
+/Users/alexandre/Desktop/Ynov/Archi/architecture-logicielle-m1/micro-demo-copie/library-microservice/loan-service/src/main/java/org/example/loan/util/LoanMapper.java
